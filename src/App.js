@@ -22,31 +22,31 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:3001/station').then(res => {
       this.setState({ stations:
-      res })
-      console.log(this.state.stations)
+      res.data })
+      console.log(this.state)
     })
   }
 
   render() {
-    // if(this.state.stations) {
-    //   let list = this.state.projects.map(cv => {
-    //     return (
-    //       <div key={cv.Station}>
-    //         <Link to={'/stations/' + cv._id}>
-    //         <h1>{cv.Station}</h1>
-    //         </Link>
-    //         <h3>{cv.City}</h3>
-    //         <h3>{cv.State}</h3>
-    //       </div>
-    //     )
-    //   })
+    if(this.state.stations) {
+      let list = this.state.stations.map(cv => {
+        return (
+          <div key={cv.Station}>
+            <Link to={'/stations/' + cv._id}>
+            <h1>{cv.Station}</h1>
+            </Link>
+            <h3>{cv.City}</h3>
+            <h3>{cv.State}</h3>
+          </div>
+        )
+      })
       return (
         <div className="App">
-          {/* {list} */}
-          {JSON.stringify(this.state.stations)}
+          {list}
+          {/* {JSON.stringify(this.state)} */}
         </div>
       )}
-  
+      }
 }
 
 export default App;
